@@ -70,7 +70,8 @@ async def transcribe_from_mic_and_send(
                     try:
                         c = await asyncio.wait_for(recv(), timeout=0.5)
                         c_json = json.loads(c)
-                        if (err := c_json.get("error")) is not None:
+                        err = c_json.get("error")
+                        if err is not None:
                             sys.stderr.write(f"Error: {err}\n")
                             sys.exit(1)
                         chunk = ParsedChunk.parse_obj(c_json)

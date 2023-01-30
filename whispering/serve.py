@@ -3,7 +3,7 @@
 import asyncio
 import json
 from logging import getLogger
-from typing import Final, Optional
+from typing import Optional
 
 import numpy as np
 import websockets
@@ -14,8 +14,8 @@ from whispering.transcriber import WhisperStreamingTranscriber
 
 logger = getLogger(__name__)
 
-MIN_PROTOCOL_VERSION: Final[int] = int("000_006_000")
-MAX_PROTOCOL_VERSION: Final[int] = CURRENT_PROTOCOL_VERSION
+MIN_PROTOCOL_VERSION = int("000_006_000")
+MAX_PROTOCOL_VERSION = CURRENT_PROTOCOL_VERSION
 
 
 async def serve_with_websocket_main(websocket):

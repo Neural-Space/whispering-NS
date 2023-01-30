@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-from typing import Final, List, Optional
+from typing import List, Optional
 
 import numpy as np
 import torch
@@ -25,7 +25,7 @@ class WhisperConfig(BaseModel):
         return values
 
 
-CURRENT_PROTOCOL_VERSION: Final[int] = int("000_006_003")
+CURRENT_PROTOCOL_VERSION = int("000_006_003")
 
 
 class Context(BaseModel, arbitrary_types_allowed=True):

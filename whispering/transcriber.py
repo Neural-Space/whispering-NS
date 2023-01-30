@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from logging import getLogger
-from typing import Final, Iterator, Optional, Union
+from typing import Iterator, Optional, Union
 
 import numpy as np
 import torch
@@ -39,21 +39,21 @@ class WhisperStreamingTranscriber:
             self.fp16 = False
 
     def __init__(self, *, config: WhisperConfig):
-        self.config: Final[WhisperConfig] = config
-        self.model: Final[Whisper] = load_model(config.model_name, device=config.device)
+        self.config = config
+        self.model = load_model(config.model_name, device=config.device)
         self.tokenizer = get_tokenizer(
             self.model.is_multilingual,
             language=config.language,
             task="transcribe",
         )
         self._set_dtype(config.fp16)
-        self.input_stride: Final[int] = exact_div(
+        self.input_stride = exact_div(
             N_FRAMES, self.model.dims.n_audio_ctx
         )  # mel frames per output token: 2
-        self.time_precision: Final[float] = (
+        self.time_precision = (
             self.input_stride * HOP_LENGTH / SAMPLE_RATE
         )  # time per output token: 0.02 (seconds)
-        self.duration_pre_one_mel: Final[float] = CHUNK_LENGTH / HOP_LENGTH
+        self.duration_pre_one_me = CHUNK_LENGTH / HOP_LENGTH
         self.vad = VAD()
 
     def _get_decoding_options(

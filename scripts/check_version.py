@@ -3,22 +3,22 @@
 import argparse
 import sys
 from pathlib import Path
-from typing import Final, Tuple
+from typing import Tuple
 
 import toml
 
 
 def get_stable_version(obj) -> str:
-    stable_version: Final[str] = obj["misc"]["stable_version"]
+    stable_version = obj["misc"]["stable_version"]
     return f"v{stable_version}"
 
 
 def check_version(path_in: Path, path_pyproject_toml: Path) -> Tuple[bool, str]:
     with path_pyproject_toml.open() as f:
         obj = toml.load(f)
-        stable_version: Final[str] = get_stable_version(obj)
-        repository: Final[str] = obj["tool"]["poetry"]["repository"]
-        cmd: Final[str] = f"pip install -U git+{repository}@{stable_version}"
+        stable_version = get_stable_version(obj)
+        repository = obj["tool"]["poetry"]["repository"]
+        cmd = f"pip install -U git+{repository}@{stable_version}"
 
     with path_in.open() as f:
         for line in f:
