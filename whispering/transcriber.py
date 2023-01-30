@@ -53,7 +53,7 @@ class WhisperStreamingTranscriber:
         self.time_precision = (
             self.input_stride * HOP_LENGTH / SAMPLE_RATE
         )  # time per output token: 0.02 (seconds)
-        self.duration_pre_one_me = CHUNK_LENGTH / HOP_LENGTH
+        self.duration_pre_one_mel = CHUNK_LENGTH / HOP_LENGTH
         self.vad = VAD()
 
     def _get_decoding_options(
